@@ -19,14 +19,13 @@ app.post('/send-email', async (req, res) => {
     return res.status(400).json({ error: 'Nome, email e mensagem são obrigatórios.' });
   }
 
-  const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      user: 'pilar.consultoria.assessoria@gmail.com',
-      pass: 'nmszyvqhortdawdr',
-    },
-  });
-
+ const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: process.env.PILAR_EMAIL,
+    pass: process.env.PILAR_PASSWORD,
+  },
+});
   const mailOptions = {
     from: email,
     to: 'pilar.consultoria.assessoria@gmail.com',
